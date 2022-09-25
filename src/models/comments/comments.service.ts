@@ -23,14 +23,6 @@ export class CommentsService {
     private dataSource: DataSource,
   ) {}
 
-  // private toResponseObject(comment: CommentEntity) {
-  //   const responseObject: any = comment;
-  //   if (comment.author) {
-  //     responseObject.author = comment.author.toResponseObject(false);
-  //   }
-  //   return responseObject;
-  // }
-
   async showByIdea(id: string, page = 1) {
     const comments = await this.commentRepository.find({
       where: { idea: { id } },

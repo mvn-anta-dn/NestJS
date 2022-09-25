@@ -18,20 +18,6 @@ export class IdeasService {
     private userRepository: UserRepository,
   ) {}
 
-  // private toResponseObject(idea: IdeaEntity): IdeaRO {
-  //   const responseObject: any = {
-  //     ...idea,
-  //     author: idea.author.toResponseObject(false),
-  //   };
-  //   if (responseObject.upVotes) {
-  //     responseObject.upVotes = idea.upVotes.length;
-  //   }
-  //   if (responseObject.downVotes) {
-  //     responseObject.downVotes = idea.downVotes.length;
-  //   }
-  //   return responseObject;
-  // }
-
   private ensureOwnerShip(idea: IdeaEntity, userId: string) {
     if (idea.author.id !== userId) {
       throw new HttpException('Incorrect user', HttpStatus.UNAUTHORIZED);
@@ -69,7 +55,6 @@ export class IdeasService {
     return ideas.map((idea) =>
       plainToClass(IdeaRO, idea, { excludeExtraneousValues: true }),
     );
-    // return ideas.map((idea) => this.toResponseObject(idea));
   }
 
   async create(userId: string, data: IdeaDTO): Promise<IdeaRO> {

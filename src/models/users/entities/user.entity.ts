@@ -42,25 +42,6 @@ export class UserEntity {
     this.password = await bcrypt.hash(this.password, 10);
   }
 
-  // toResponseObject(showToken = true): UserRO {
-  //   const { id, created, username, token } = this;
-  //   const responseObject: any = { id, created, username };
-
-  //   if (showToken) {
-  //     responseObject.token = token;
-  //   }
-
-  //   if (this.ideas) {
-  //     responseObject.ideas = this.ideas;
-  //   }
-
-  //   if (this.bookmarks) {
-  //     responseObject.bookmarks = this.bookmarks;
-  //   }
-
-  //   return responseObject;
-  // }
-
   async comparePassword(attempt: string) {
     return await bcrypt.compare(attempt, this.password);
   }

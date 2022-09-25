@@ -20,6 +20,5 @@ export class UsersService {
     return users.map((user) =>
       plainToClass(UserRO, user, { excludeExtraneousValues: true }),
     );
-    // return users.map((user) => user.toResponseObject(false));
   }
 }

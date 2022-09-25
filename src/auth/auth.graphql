@@ -1,0 +1,10 @@
+type Auth {
+  id: ID!
+  username: String!
+  token: String!
+}
+
+type Mutation {
+  login(username: String!, password: String!): Auth
+  register(username: String!, password: String!): Auth
+}

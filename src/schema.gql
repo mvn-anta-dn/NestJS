@@ -1,0 +1,54 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type AuthRO {
+  id: String!
+  username: String!
+  token: String!
+}
+
+type UserRO {
+  id: String!
+  username: String!
+  bookmarks: [IdeaRO!]!
+  comments: [CommentRO!]!
+}
+
+type IdeaRO {
+  id: String!
+  idea: String!
+  description: String!
+  author: UserRO!
+  upVotes: [UserRO!]!
+  downVotes: [UserRO!]!
+  comments: [CommentRO!]!
+}
+
+type CommentRO {
+  id: String!
+  comment: String!
+  author: UserRO!
+  idea: UserRO!
+}
+
+type Query {
+  users(page: Float!): [UserRO!]!
+  comment(id: String!): CommentRO!
+  ideas(page: Float!, newest: Boolean!): [IdeaRO!]!
+  idea(id: String!): IdeaRO!
+}
+
+type Mutation {
+  login(username: String!, password: String!): AuthRO!
+  register(username: String!, password: String!): AuthRO!
+  createComment(idea: String!, comment: String!): CommentRO!
+  deleteComment(id: String!): CommentRO!
+  createIdea(idea: String!, description: String!): IdeaRO!
+  updateIdea(id: String!, idea: String!, description: String!): IdeaRO!
+  deleteIdea(id: String!): IdeaRO!
+  upvote(id: String!): IdeaRO!
+  downvote(id: String!): IdeaRO!
+  bookmark(id: String!): UserRO!
+  unbookmark(id: String!): UserRO!
+}

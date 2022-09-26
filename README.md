@@ -35,6 +35,9 @@ $ npm install
 ## Running the app
 
 ```bash
+# run docker for database
+$ docker-compose up
+
 # development
 $ npm run start
 
@@ -57,6 +60,32 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+
+## command in app
+
+```bash
+# generate migration
+$ npm run migration:generate
+
+# create migration file
+$ npm run migration:create
+
+# run migration
+$ npm run migration:run
+
+# revert migration
+$ npm run migration:revert
+
+# watch seeding config
+$ npm run seed:config
+
+# run seed
+$ npm run seed:run
+```
+
+## graphql
+
+# <app domain>/graphql
 
 ## Support
 

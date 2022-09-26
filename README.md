@@ -85,7 +85,7 @@ $ npm run seed:run
 
 ## graphql
 
-# <app domain>/graphql
+# <"app domain">/graphql
 
 ## Support
 

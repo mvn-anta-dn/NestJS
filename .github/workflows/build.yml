@@ -1,0 +1,28 @@
+name: Building and testing
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - name: Install packages
+        run: yarn install --frozen-lockfile
+
+      - name: Build source
+        run: yarn build
+
+      - name: Check lint
+        run: yarn lint
+
+      - name: Check vulnerabilities
+        run: yarn audit

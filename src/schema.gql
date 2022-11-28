@@ -41,7 +41,7 @@ type Query {
 
 type Mutation {
   login(username: String!, password: String!): AuthRO!
-  register(username: String!, password: String!): AuthRO!
+  register(username: String!, password: String!, gender: String!): AuthRO!
   createComment(idea: String!, comment: String!): CommentRO!
   deleteComment(id: String!): CommentRO!
   createIdea(idea: String!, description: String!): IdeaRO!

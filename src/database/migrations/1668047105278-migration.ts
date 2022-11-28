@@ -1,11 +1,14 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class migrate1663125183685 implements MigrationInterface {
-  name = 'migrate1663125183685';
+export class migration1668047105278 implements MigrationInterface {
+  name = 'migration1668047105278';
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(
-      `CREATE TABLE "user" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "username" text NOT NULL, "password" text NOT NULL, "created" TIMESTAMP NOT NULL DEFAULT now(), CONSTRAINT "UQ_78a916df40e02a9deb1c4b75edb" UNIQUE ("username"), CONSTRAINT "PK_cace4a159ff9f2512dd42373760" PRIMARY KEY ("id"))`,
+      `CREATE TYPE "public"."user_gender_enum" AS ENUM('male', 'female', 'other')`,
+    );
+    await queryRunner.query(
+      `CREATE TABLE "user" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "username" text NOT NULL, "password" text NOT NULL, "gender" "public"."user_gender_enum" NOT NULL DEFAULT 'male', "created" TIMESTAMP NOT NULL DEFAULT now(), CONSTRAINT "UQ_78a916df40e02a9deb1c4b75edb" UNIQUE ("username"), CONSTRAINT "PK_cace4a159ff9f2512dd42373760" PRIMARY KEY ("id"))`,
     );
     await queryRunner.query(
       `CREATE TABLE "idea" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "idea" text NOT NULL, "description" text NOT NULL, "created" TIMESTAMP NOT NULL DEFAULT now(), "updated" TIMESTAMP NOT NULL DEFAULT now(), "authorId" uuid, CONSTRAINT "PK_5096f543c484b349f5234da9d97" PRIMARY KEY ("id"))`,
@@ -121,5 +124,6 @@ export class migrate1663125183685 implements MigrationInterface {
     await queryRunner.query(`DROP TABLE "comment"`);
     await queryRunner.query(`DROP TABLE "idea"`);
     await queryRunner.query(`DROP TABLE "user"`);
+    await queryRunner.query(`DROP TYPE "public"."user_gender_enum"`);
   }
 }

@@ -1,7 +1,8 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { ApiProperty } from '@nestjs/swagger';
-import { Expose, Type } from 'class-transformer';
+import { Expose } from 'class-transformer';
 import { IsNotEmpty, IsString } from 'class-validator';
+import { Gender } from 'src/models/users/entities/user.entity';
 
 export class AuthDTO {
   @IsString()
@@ -13,6 +14,9 @@ export class AuthDTO {
   @IsString()
   @ApiProperty()
   password: string;
+
+  @ApiProperty()
+  gender: Gender;
 }
 
 @ObjectType()

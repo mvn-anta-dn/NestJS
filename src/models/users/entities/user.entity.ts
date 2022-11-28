@@ -13,6 +13,7 @@ import {
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
 
+export type Gender = 'male' | 'female' | 'other';
 @Entity('user')
 export class UserEntity {
   @PrimaryGeneratedColumn('uuid')
@@ -26,6 +27,13 @@ export class UserEntity {
 
   @Column('text')
   password: string;
+
+  @Column({
+    type: 'enum',
+    enum: ['male', 'female', 'other'],
+    default: 'male',
+  })
+  gender?: Gender;
 
   @CreateDateColumn()
   created: Date;

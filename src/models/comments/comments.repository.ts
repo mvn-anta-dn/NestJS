@@ -6,5 +6,4 @@ export class CommentRepository extends Repository<CommentEntity> {
   constructor() {
     super(CommentEntity, dataSourceConfig.manager);
   }
-  z;
 }

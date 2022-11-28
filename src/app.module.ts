@@ -9,6 +9,7 @@ import { CommentsModule } from './models/comments/comments.module';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { PostgresModule } from './providers/postgres/provider.module';
 import LogsMiddleware from './common/middlewares/logs.middleware';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import LogsMiddleware from './common/middlewares/logs.middleware';
     CommentsModule,
     IdeasModule,
     PostgresModule,
+    // ScheduleModule.forRoot(),
   ],
   controllers: [],
   providers: [

@@ -1,10 +1,9 @@
-import { UserRepository } from './users.repository';
-import { UserRO } from './dtos/user.dto';
-import { UserEntity } from './entities/user.entity';
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { plainToClass } from 'class-transformer';
-import { Cron } from '@nestjs/schedule';
+import { UserRO } from './dtos/user.dto';
+import { UserEntity } from './entities/user.entity';
+import { UserRepository } from './users.repository';
 
 @Injectable()
 export class UsersService {
@@ -20,6 +19,7 @@ export class UsersService {
       skip: 10 * (page - 1),
       take: 10,
     });
+    // test
     return users.map((user) =>
       plainToClass(UserRO, user, { excludeExtraneousValues: true }),
     );
